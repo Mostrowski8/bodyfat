@@ -1,7 +1,7 @@
 {
   "main.css": "/bodyfat/static/css/main.a403a053.chunk.css",
-  "main.js": "/bodyfat/static/js/main.d495a685.chunk.js",
-  "main.js.map": "/bodyfat/static/js/main.d495a685.chunk.js.map",
+  "main.js": "/bodyfat/static/js/main.154b13b1.chunk.js",
+  "main.js.map": "/bodyfat/static/js/main.154b13b1.chunk.js.map",
   "static/css/1.18b87801.chunk.css": "/bodyfat/static/css/1.18b87801.chunk.css",
   "static/js/1.061577b9.chunk.js": "/bodyfat/static/js/1.061577b9.chunk.js",
   "static/js/1.061577b9.chunk.js.map": "/bodyfat/static/js/1.061577b9.chunk.js.map",
@@ -10,6 +10,6 @@
   "static/css/1.18b87801.chunk.css.map": "/bodyfat/static/css/1.18b87801.chunk.css.map",
   "static/css/main.a403a053.chunk.css.map": "/bodyfat/static/css/main.a403a053.chunk.css.map",
   "index.html": "/bodyfat/index.html",
-  "precache-manifest.0b95ab71da8399b8eae71b0ce023120a.js": "/bodyfat/precache-manifest.0b95ab71da8399b8eae71b0ce023120a.js",
+  "precache-manifest.10618f07c3c258e717797cb593781e27.js": "/bodyfat/precache-manifest.10618f07c3c258e717797cb593781e27.js",
   "service-worker.js": "/bodyfat/service-worker.js"
 }
