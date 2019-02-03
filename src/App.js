@@ -51,10 +51,10 @@ class Calc extends Component {
   constructor(props) {
     super(props);
     this.state={
-      age: 0,
-      fieldtwo: 0,
-      fieldthree: 0,
-      fieldone: 0,
+      age: "",
+      fieldtwo: "",
+      fieldthree: "",
+      fieldone: "",
       submit: false,
       inputdone: false,
       sex: true
@@ -64,14 +64,17 @@ class Calc extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.setSex = this.setSex.bind(this);
   }
+
   handleChange(event){
-    const target = event.target;
-    const value = event.target.value;
-    const name = target.name;
-    this.setState({
-      [name]: Number(value)
-    })
-    this.setState({submit: false})
+    let target = event.target;
+    let value = event.target.value;
+    let name = target.name;
+    if (isNaN(value) && value !== '') 
+      return;
+      this.setState({
+        [name]: value === ''? value : Number(value)
+      })
+      this.setState({submit: false})
   }
   
   onSubmit(){
@@ -81,19 +84,23 @@ class Calc extends Component {
   }
 
 calculateMale(age, chest, stomach, thigh){
-  return (457 / (1.1093800 - (0.0008267 * (chest + stomach + thigh)) + (0.0000016 * ((chest + stomach + thigh) ** 2)) - (0.0002574 * age))) - 414.2;
+  let result = (457 / (1.1093800 - (0.0008267 * (chest + stomach + thigh)) + (0.0000016 * ((chest + stomach + thigh) ** 2)) - (0.0002574 * age))) - 414.2;
+  if (result<0) result=50;
+  return result
 }
 
 calculateFemale(age, tricep, hips, thigh){
-  return (457 / (1.099421 - (0.0009929 * (tricep+hips+thigh)) + (0.0000023 * ((tricep+hips+thigh)**2)) - (0.0001392 * age))) - 414.2; 
+  let result = (457 / (1.099421 - (0.0009929 * (tricep+hips+thigh)) + (0.0000023 * ((tricep+hips+thigh)**2)) - (0.0001392 * age))) - 414.2;
+  if (result<0) result=50;
+  return result 
 }
 
 setSex(){
   this.setState({sex: !this.state.sex,
-    age: 0,
-      fieldtwo: 0,
-      fieldthree: 0,
-      fieldone: 0,
+    age: "",
+      fieldtwo: "",
+      fieldthree: "",
+      fieldone: "",
       submit: false
   });
 }
@@ -112,19 +119,19 @@ setSex(){
       </div>
       <div className="col-sm text-center">
       <label className="label">Age</label>
-      <input name="age" min="0" value={this.state.age} className="input" type="number" onChange={this.handleChange}></input>
+      <input name="age"  value={this.state.age} className="input" type="text" onChange={this.handleChange}></input>
       </div>
       <div className="col-sm text-center">
       <label className="label">{(this.state.sex)? "Chest (mm)":"Triceps (mm)"}</label>
-      <input name="fieldone" className="input" min="0" value={this.state.fieldone} type="number" onChange={this.handleChange}></input>
+      <input name="fieldone" className="input"  value={this.state.fieldone} type="text" onChange={this.handleChange}></input>
       </div>
       <div className="col-sm text-center">
       <label className="label">{(this.state.sex)? "Stomach (mm)":"Hips (mm)"}</label>
-      <input name="fieldtwo" className="input" min="0" value={this.state.fieldtwo} type="number" onChange={this.handleChange}></input>
+      <input name="fieldtwo" className="input"  value={this.state.fieldtwo} type="text" onChange={this.handleChange}></input>
       </div>
       <div className="col-sm text-center">
       <label className="label">Thigh (mm)</label>
-      <input name="fieldthree" className="input" min="0" value={this.state.fieldthree} type="number" onChange={this.handleChange}></input>
+      <input name="fieldthree" className="input" value={this.state.fieldthree} type="text" onChange={this.handleChange}></input>
       </div>
       </div>
       {inputdone && !submit && <button className="buttonfat" onClick={this.onSubmit}>Calculate body fat</button>}
