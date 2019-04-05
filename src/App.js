@@ -1,4 +1,4 @@
-import React, { Component, useReducer, useState, useContext } from 'react';
+import React, { Component, useReducer, useState, useContext, useEffect } from 'react';
 import Context from './reducer/Context'
 import reducer from './reducer/Reducer'
 
@@ -7,70 +7,63 @@ import reducer from './reducer/Reducer'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Collapse, Button, CardBody, Card } from 'reactstrap';
-import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+    } from 'reactstrap';
 
 let initialState = {
-  forms: {
-    age: 0,
-    chest: 0, 
-    stomach: 0, 
-    thigh: 0,
-    tricep: 0,
-    hips: 0
-  },
-  sex: true
+  forms: [
+    {name: "age",
+    value: 0},
+    {name: "thigh",
+      value : 0},
+    {name: "chest",
+      value : 0}, 
+    {name: "stomach",
+      value: 0} 
+  ],
+  sex: true,
+  sexPickerOpen: false,
+  appBarOpen: false,
+  submit: false,
+  result: null
 };
 
 const App = () => {
   let [state, dispatch] = useReducer(reducer, initialState);
   return (
   <div style={{minHeight: "100%"}}>
-  <h1 className="heading">BODY FAT CALCULATOR</h1>
   <Context.Provider value={dispatch}>
+  <Appbar appBarOpen={state.appBarOpen}/>
         <Calc {...state} />
   </Context.Provider>     
         </div>
       ) 
   }
 
-const Calc = ({sex, forms, ...rest}) => {
-console.log("props", sex, forms)
-  
-  
-  const dispatch = useContext(Context);
-   
-  
-// let calculateMale = (age, chest, stomach, thigh)=>{
-//   let result = (457 / (1.1093800 - (0.0008267 * (chest + stomach + thigh)) + (0.0000016 * ((chest + stomach + thigh) ** 2)) - (0.0002574 * age))) - 414.2;
-//   if (result<0) result=50;
-//   return result
-// }
-
-// let calculateFemale=(age, tricep, hips, thigh)=>{
-  
-//   let result = (457 / (1.099421 - (0.0009929 * (tricep+hips+thigh)) + (0.0000023 * ((tricep+hips+thigh)**2)) - (0.0001392 * age))) - 414.2;
-//   if (result<0) result=50;
-//   return result 
-// }
-
-    // let check = [age, fieldone, fieldtwo, fieldthree];
-    // let inputdone =  check.find(e => e === '' || e === 0) !== undefined ? false : true;
-
+const Calc = ({result, sex, forms, submit, sexPickerOpen, ...rest}) => {
+console.log("props", sex, submit, forms, "dropdownopen", sexPickerOpen);
+const dispatch = useContext(Context);
+let inputdone =  forms.find((e) => {return e.value === '' || e.value === 0}) !== undefined ? false : true;
     return(
       <div>
       <div>
         <div className="container">
-          <div className="row">
+        {!inputdone && <div className="row"><div className="col-sm instruction">Please enter your age and size of skin folds (mm) on input areas</div></div>}
+        <div className="row">
             <div className="col-sm text-center">
               <label className="label">Sex</label>
-              {/* <Dropdowna dropdownOpen={dropdownOpen} toggle={toggle} select={select} /> */}
-            </div>
-            <Formfields sex={sex} forms={forms}/>
-            
-          </div>
-          {/* {inputdone && !submit && <button className="buttonfat" onClick={()=>{dispatch({type:"onSubmit"})}}>Calculate body fat</button>}
-          {submit && <div className="row"><div className="col-sm bodyfat">{"Body fat " + ((this.state.sex) ? this.calculateFemale(...check).toFixed(2) : this.calculateMale(...check).toFixed(2)) + "%"}</div></div>}
-          {!inputdone && <div className="row"><div className="col-sm bodyfat">Please fill all input fields</div></div>} */}
+              <SexPicker sex={sex} sexPickerOpen={sexPickerOpen}/>
+            </div>     
+          </div> 
+          <Formfields sex={sex} forms={forms}/>
+          {inputdone && !submit && <button className="buttonfat" onClick={()=>{dispatch({type:"submit"});dispatch({type:"calculate"}); }}>Calculate body fat</button>}
+          {submit && <div className="row"><div className="col-sm bodyfat">{"Body fat " + result + "%"}</div></div>}
           </div>
         <Info sex={sex} />
       </div>
@@ -80,51 +73,32 @@ console.log("props", sex, forms)
 
 const Formfields = ({forms, sex}) => {
 const dispatch = useContext(Context);
-
-
-const Formfields = Object.keys(forms).map((from, index)=>{
-return <div key={Object.getOwnPropertyNames(forms)[index]} className="col-sm text-center">
-<label className="label">{Object.getOwnPropertyNames(forms)[index]}</label>
-<input name={Object.getOwnPropertyNames(forms)[index]} className="input" value={from.value} type="number" onChange={(e)=>{dispatch({type:"handleInputFieldChange", payload:{value:e.target.value, name:e.target.name}})}}></input>
+const Formfields = forms.map((form, index)=>{
+return <div key={form.name} className="col-sm-12 col-md-3 col-lg-3 text-center">
+<div style={{justifyContent:"center"}} className="row text-center">
+<label className="col-sm-12 col-6 label">{form.name}</label>
+<input name={form.name} className="input" min={0} max={99} value={form.value} type="number" onChange={(e)=>{dispatch({type:"handleInputFieldChange", payload:{value:e.target.value, name:e.target.name}})}}></input>
+</div>
 </div>
 });
-
-
   return (
-    <div>
+    <div style={{marginTop:"20px"}} className="row text-center">
 {Formfields}
-    {/* <div className="col-sm text-center">
-            <label className="label">Age</label>
-              <input name="age" className="input"  value={age} type="number" onChange={(e)=>{dispatch({type:"handleInputFieldChange", payload:{value:e.target.value, name:e.target.name}})}}></input>
-            </div>
-            <div className="col-sm text-center">
-              <label className="label">{sex? "Chest (mm)":"Tricep (mm)"}</label>
-              <input name={sex? "chest":"tricep"} className="input"  value={sex? chest:tricep} type="number" onChange={(e)=>{dispatch({type:"handleInputFieldChange", payload:{value:e.target.value, name:e.target.name}})}}></input>
-            </div>
-            <div className="col-sm text-center">
-              <label className="label">{sex? "Stomach (mm)":"Hips (mm)"}</label>
-              <input name={sex? "stomach":"hips"} className="input"  value={sex? stomach:hips} type="number" onChange={(e)=>{dispatch({type:"handleInputFieldChange", payload:{value:e.target.value, name:e.target.name}})}}></input>
-            </div>
-            <div className="col-sm text-center">
-              <label className="label">Thigh (mm)</label>
-              <input name="thigh" className="input" value={thigh} type="number" onChange={(e)=>{dispatch({type:"handleInputFieldChange", payload:{value:e.target.value, name:e.target.name}})}}></input>
-            </div> */}
-            </div>
+    </div>
   )
 }
 
-function Dropdowna (dropdownOpen, toggle, sex) {
+const SexPicker = ({sexPickerOpen, sex}) => {
  const dispatch = useContext(Context);
-
     return (
-      <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
-        <DropdownToggle caret>
-          {sex}
+      <ButtonDropdown direction={"up"} isOpen={sexPickerOpen} toggle={()=>{dispatch({type:"toggle", payload:"sexpicker"})}}>
+        <DropdownToggle  caret>
+          {sex? "Male":"Female"}
         </DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem onClick={(e)=>{dispatch({type:"dropdownSelect", payload:e.target})}}>Male</DropdownItem>
+        <DropdownMenu className={"dropDownMenu"}>
+          <DropdownItem className={"dropdownItem"} onClick={(e)=>{dispatch({type:"sexChange", payload:e.target})}}>Male</DropdownItem>
           <DropdownItem divider />
-          <DropdownItem onClick={(e)=>{dispatch({type:"dropdownSelect", payload:e.target})}}>Female</DropdownItem>
+          <DropdownItem className={"dropdownItem"} onClick={(e)=>{dispatch({type:"sexChange", payload:e.target})}}>Female</DropdownItem>
         </DropdownMenu>
       </ButtonDropdown>
     ); 
@@ -136,13 +110,10 @@ class Info extends Component {
     this.toggle = this.toggle.bind(this);
     this.state = { collapse: false };
   }
-
   toggle() {
     this.setState({ collapse: !this.state.collapse });
   }
-
 render() {
-
 return (
 <div className="container info"><div className="row"><div className="col-sm">
 <Button color="secondary" className="infobttn" onClick={this.toggle} style={{ margin: '1rem' }}>Click for info</Button>
@@ -165,6 +136,29 @@ return (
   }
 }
 
+const Appbar = ({appBarOpen}) => {
+  console.log("appbaropen", appBarOpen);
+  const dispatch = useContext(Context);
+  console.log("dispatch", dispatch)
+    return (
+      <div>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">Bodyfat claculator</NavbarBrand>
+          <NavbarToggler onClick={(e)=>{dispatch({type:"toggle", payload:"appbar"})}}/>
+          <Collapse isOpen={appBarOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink href="/components/">Info</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="https://github.com/Mostrowski8/bodyfat">GitHub</NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </div>
+    );
+}
 
 
 export default App;

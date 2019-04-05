@@ -30,3 +30,21 @@
     transform: rotate(360deg);
   }
 }
+
+.dropDownMenu{
+  background-color: #5a6268 !important;
+  color: white !important;
+}
+.dropdownItem {
+  color: white !important;
+  transition: border-radius 0.5s ease-in-out; 
+  transition: margin 0.5s ease-in-out;
+}
+
+
+.dropdownItem:hover {
+  border-radius: 10px !important;
+  margin: 0 10px;
+  background-color: white !important;
+  color: #5a6268 !important;
+}
