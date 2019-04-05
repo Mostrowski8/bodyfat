@@ -51,6 +51,7 @@ li {
   border: 1px solid white;
   padding: 10px;
   margin-bottom: 2em;
+  margin-top: 30px;
 }
 
 .heading {
@@ -82,7 +83,7 @@ code {
   border: 1px solid white;
   color: white;
   padding: 5px;
-  margin-bottom: 20px;
+  margin: 5px;
 }
 
 .density {

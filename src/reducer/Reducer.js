@@ -87,6 +87,11 @@ switch (action.payload) {
   newState = {...state, appBarOpen};
   console.log("newState", newState);
   break;
+  case "modal":
+  let modalOpen = !state.modalOpen;
+  newState = {...state, modalOpen};
+  console.log("newState", newState);
+  break;
   default:
   console.log("Wrong payload")
 }

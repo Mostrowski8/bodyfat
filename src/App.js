@@ -1,20 +1,11 @@
-import React, { Component, useReducer, useState, useContext, useEffect } from 'react';
+import React, { useReducer, useContext} from 'react';
 import Context from './reducer/Context'
 import reducer from './reducer/Reducer'
-
 
 //styling
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Collapse, Button, CardBody, Card } from 'reactstrap';
-import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-    } from 'reactstrap';
+import { Collapse, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 let initialState = {
   forms: [
@@ -31,7 +22,8 @@ let initialState = {
   sexPickerOpen: false,
   appBarOpen: false,
   submit: false,
-  result: null
+  result: null,
+  modalOpen: false
 };
 
 const App = () => {
@@ -39,14 +31,14 @@ const App = () => {
   return (
   <div style={{minHeight: "100%"}}>
   <Context.Provider value={dispatch}>
-  <Appbar appBarOpen={state.appBarOpen}/>
+  <Appbar {...state}/>
         <Calc {...state} />
   </Context.Provider>     
         </div>
       ) 
   }
 
-const Calc = ({result, sex, forms, submit, sexPickerOpen, ...rest}) => {
+const Calc = ({result, sex, forms, submit, sexPickerOpen}) => {
 console.log("props", sex, submit, forms, "dropdownopen", sexPickerOpen);
 const dispatch = useContext(Context);
 let inputdone =  forms.find((e) => {return e.value === '' || e.value === 0}) !== undefined ? false : true;
@@ -57,21 +49,20 @@ let inputdone =  forms.find((e) => {return e.value === '' || e.value === 0}) !==
         {!inputdone && <div className="row"><div className="col-sm instruction">Please enter your age and size of skin folds (mm) on input areas</div></div>}
         <div className="row">
             <div className="col-sm text-center">
-              <label className="label">Sex</label>
+              <label className="label">sex</label>
               <SexPicker sex={sex} sexPickerOpen={sexPickerOpen}/>
             </div>     
           </div> 
           <Formfields sex={sex} forms={forms}/>
           {inputdone && !submit && <button className="buttonfat" onClick={()=>{dispatch({type:"submit"});dispatch({type:"calculate"}); }}>Calculate body fat</button>}
           {submit && <div className="row"><div className="col-sm bodyfat">{"Body fat " + result + "%"}</div></div>}
-          </div>
-        <Info sex={sex} />
+          </div> 
       </div>
       </div>
     )
   }
 
-const Formfields = ({forms, sex}) => {
+const Formfields = ({forms}) => {
 const dispatch = useContext(Context);
 const Formfields = forms.map((form, index)=>{
 return <div key={form.name} className="col-sm-12 col-md-3 col-lg-3 text-center">
@@ -104,40 +95,8 @@ const SexPicker = ({sexPickerOpen, sex}) => {
     ); 
 }
 
-class Info extends Component {
-  constructor(props) {
-    super(props);
-    this.toggle = this.toggle.bind(this);
-    this.state = { collapse: false };
-  }
-  toggle() {
-    this.setState({ collapse: !this.state.collapse });
-  }
-render() {
-return (
-<div className="container info"><div className="row"><div className="col-sm">
-<Button color="secondary" className="infobttn" onClick={this.toggle} style={{ margin: '1rem' }}>Click for info</Button>
-<Collapse isOpen={this.state.collapse}>
-<Card>
-<CardBody>
-<p>The formula has been taken from <a target="_blank" rel="noopener noreferrer" href="https://www.sfd.pl/Zmierz_dok%C5%82adnie_sw%C3%B3j_poziom_t%C5%82uszczu-czyli_wielopartyjna_metoda_pomiaru_fa%C5%82domierzem-t263219.html">this page</a>.</p>
-<p>It is based on skinfold measurement method <a target="_blank" rel="noopener noreferrer" href="https://www.ptdirect.com/training-delivery/client-assessment/taking-skin-fold-body-fat-measurements">described here</a>.</p>
-<p>Measurements have to be taken from:</p>
-<ul>
-<li>{(this.props.sex)? "Your chest area":"Your triceps area"}</li>
-<li>{(this.props.sex)? "Your stomach area":"Your hip area"}</li>  
-<li>Your thigh area</li>    
-</ul> 
-</CardBody>
-</Card>
-</Collapse>
-</div></div></div>
-    )
-  }
-}
-
-const Appbar = ({appBarOpen}) => {
-  console.log("appbaropen", appBarOpen);
+const Appbar = ({appBarOpen, modalOpen, sex, ...rest}) => {
+  console.log("appbaropen", appBarOpen, "modalopen", modalOpen, "sex", sex);
   const dispatch = useContext(Context);
   console.log("dispatch", dispatch)
     return (
@@ -148,10 +107,10 @@ const Appbar = ({appBarOpen}) => {
           <Collapse isOpen={appBarOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Info</NavLink>
+                <InfoModal modalOpen={modalOpen} sex={sex}/>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/Mostrowski8/bodyfat">GitHub</NavLink>
+                <NavLink target="_blank" href="https://github.com/Mostrowski8/bodyfat">GitHub</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
@@ -160,5 +119,26 @@ const Appbar = ({appBarOpen}) => {
     );
 }
 
+const InfoModal = ({modalOpen, sex}) => {
+  const dispatch = useContext(Context);
+    return (
+      <div>
+        <NavLink style={{cursor:"pointer"}} onClick={()=>{dispatch({type:"toggle", payload:"modal"})}}>Info</NavLink>
+        <Modal isOpen={modalOpen} toggle={()=>{dispatch({type:"toggle", payload:"modal"})}}>
+          <ModalHeader toggle={()=>{dispatch({type:"toggle", payload:"modal"})}}>Info</ModalHeader>
+          <ModalBody>
+          <p>The formula has been taken from <a target="_blank" rel="noopener noreferrer" href="https://www.sfd.pl/Zmierz_dok%C5%82adnie_sw%C3%B3j_poziom_t%C5%82uszczu-czyli_wielopartyjna_metoda_pomiaru_fa%C5%82domierzem-t263219.html">this page</a>.</p>
+          <p>It is based on skinfold measurement method <a target="_blank" rel="noopener noreferrer" href="https://www.ptdirect.com/training-delivery/client-assessment/taking-skin-fold-body-fat-measurements">described here</a>.</p>
+          <p>Measurements have to be taken from:</p>
+          <ul>
+          <li>{(sex)? "Your chest area":"Your triceps area"}</li>
+          <li>{(sex)? "Your stomach area":"Your hip area"}</li>  
+          <li>Your thigh area</li>    
+          </ul> 
+          </ModalBody>
+        </Modal>
+      </div>
+    );
+  }
 
 export default App;
