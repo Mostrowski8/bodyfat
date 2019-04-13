@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/bodyfat/static/css/1.16e24770.chunk.css"
   },
   {
-    "revision": "0fb668d307af6fe27948db9c70973ac2",
+    "revision": "304000e1f3b6b177fbb6c26c3b0dd93a",
     "url": "/bodyfat/index.html"
   }
 ];
