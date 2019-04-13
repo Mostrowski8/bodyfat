@@ -4,23 +4,23 @@ self.__precacheManifest = [
     "url": "/bodyfat/static/js/runtime~main.9cb2868c.js"
   },
   {
-    "revision": "8fe05632bbb6052ad0a1",
-    "url": "/bodyfat/static/js/main.8fe05632.chunk.js"
+    "revision": "a424ce4d1efba334355c",
+    "url": "/bodyfat/static/js/main.a424ce4d.chunk.js"
   },
   {
     "revision": "b3ce9011547eca3e97bd",
     "url": "/bodyfat/static/js/1.b3ce9011.chunk.js"
   },
   {
-    "revision": "8fe05632bbb6052ad0a1",
-    "url": "/bodyfat/static/css/main.0c9137cf.chunk.css"
+    "revision": "a424ce4d1efba334355c",
+    "url": "/bodyfat/static/css/main.add5e940.chunk.css"
   },
   {
     "revision": "b3ce9011547eca3e97bd",
     "url": "/bodyfat/static/css/1.4903832c.chunk.css"
   },
   {
-    "revision": "2749c4bcd3f36cf18d73487324c6b081",
+    "revision": "2aa461385a2fcd67b329af81a852338e",
     "url": "/bodyfat/index.html"
   }
 ];
