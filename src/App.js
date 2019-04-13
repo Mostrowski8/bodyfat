@@ -39,7 +39,6 @@ const App = () => {
   }
 
 const Calc = ({result, sex, forms, submit, sexPickerOpen}) => {
-console.log("props", sex, submit, forms, "dropdownopen", sexPickerOpen);
 const dispatch = useContext(Context);
 let inputdone =  forms.find((e) => {return e.value === '' || e.value === 0}) !== undefined ? false : true;
     return(
@@ -65,10 +64,10 @@ let inputdone =  forms.find((e) => {return e.value === '' || e.value === 0}) !==
 const Formfields = ({forms}) => {
 const dispatch = useContext(Context);
 const Formfields = forms.map((form, index)=>{
-return <div key={form.name} className="col-sm-12 col-md-3 col-lg-3 text-center">
+return <div key={form.name} style={{justifyContent:"center"}} className="col-12 text-center">
 <div style={{justifyContent:"center"}} className="row text-center">
-<label className="col-sm-12 col-6 label">{form.name}</label>
-<input name={form.name} className="input" min={0} max={99} value={form.value} type="number" onChange={(e)=>{dispatch({type:"handleInputFieldChange", payload:{value:e.target.value, name:e.target.name}})}}></input>
+<label className="col-xs-6 col-sm-6 label">{form.name}</label>
+<div className="col-xs-6 col-sm-6 inputfield" ><input name={form.name} className="input" min={0} max={99} value={form.value} type="number" onChange={(e)=>{dispatch({type:"handleInputFieldChange", payload:{value:e.target.value, name:e.target.name}})}}></input></div>
 </div>
 </div>
 });
