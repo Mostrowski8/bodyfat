@@ -67,7 +67,7 @@ const Formfields = forms.map((form, index)=>{
 return <div key={form.name} style={{justifyContent:"center"}} className="col-12 text-center">
 <div style={{justifyContent:"center"}} className="row text-center">
 <label className="col-xs-6 col-sm-6 label">{form.name}</label>
-<div className="col-xs-6 col-sm-6 inputfield" ><input name={form.name} className="input" min={0} max={99} value={form.value} type="number" onChange={(e)=>{dispatch({type:"handleInputFieldChange", payload:{value:e.target.value, name:e.target.name}})}}></input></div>
+<div className="col-xs-6 col-sm-6 inputfield" ><input name={form.name} className="input" min={1} max={99} value={form.value} type="number" onChange={(e)=>{dispatch({type:"handleInputFieldChange", payload:{value: parseInt(e.target.value), name:e.target.name}})}}></input></div>
 </div>
 </div>
 });

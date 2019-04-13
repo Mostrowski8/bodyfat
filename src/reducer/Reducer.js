@@ -5,7 +5,8 @@ export default function reducer(state, action) {
  console.log(action.type, action.payload);
  let {value, name} = action.payload;
  if (value>99 || value<0) return state;
-newState = {...state, submit:false};
+ if (isNaN(value)===true) return state;
+ newState = {...state, submit:false};
  newState.forms.forEach((form)=> {
    if (form.name===name) form.value=value; 
  });

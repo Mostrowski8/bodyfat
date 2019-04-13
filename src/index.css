@@ -92,14 +92,22 @@ code {
   transition: 2s ease-in-out !important;
 }
 
+.btn-group {
+  margin-left: 10px !important;
+}
+
 .input {
-  max-width: 70px;
+  width: 70px;
   border-radius: 5px;
   background-color: transparent;
   border: 1px solid white;
   color: white;
   padding: 5px;
   margin: 5px;
+}
+
+input:invalid {
+  color: #FF416C !important;
 }
 
 .input::after {
