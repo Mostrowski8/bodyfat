@@ -43,7 +43,7 @@ let inputdone =  forms.find((e) => {return e.value === '' || e.value === 0}) !==
       <div>
       <div>
         <div className="container">
-        {!inputdone && <div className="row"><div className="col-sm instruction">Please enter your age and size of skin folds (mm) on input areas</div></div>}
+        {!inputdone && <div className="row"><div className="col-sm instruction">Please enter your age and size of skin folds on input areas</div></div>}
         <div className="row">
             <div className="col-sm text-center">
               <label className="label">sex</label>
@@ -65,7 +65,7 @@ const Formfields = forms.map((form, index)=>{
 return <div key={form.name} style={{justifyContent:"center"}} className="col-12 text-center">
 <div style={{justifyContent:"center"}} className="row text-center">
 <label className="col-xs-6 col-sm-6 label">{form.name}</label>
-<div className="col-xs-6 col-sm-6 inputfield" ><input name={form.name} className="input" min={1} max={99} value={form.value} type="number" onChange={(e)=>{dispatch({type:"handleInputFieldChange", payload:{value: parseInt(e.target.value), name:e.target.name}})}}></input></div>
+<div className="col-xs-6 col-sm-6 inputfield" ><input name={form.name} className="input" min={1} max={99} value={form.value} type="number" onChange={(e)=>{dispatch({type:"handleInputFieldChange", payload:{value: parseInt(e.target.value), name:e.target.name}})}}></input>{form.name!=="age"&&<span style={{color: "white"}}>mm<span/></span>}</div>
 </div>
 </div>
 });

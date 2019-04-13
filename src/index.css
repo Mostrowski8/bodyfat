@@ -33,7 +33,7 @@ html {
 }
 
 .info {
- border: none !important; 
+  border: none !important;
 }
 
 p {
@@ -45,8 +45,9 @@ p {
 li {
   font-weight: bold;
   color: black;
-  font-size: 1.5em; 
+  font-size: 1.5em;
 }
+
 .container {
   border: 1px solid white;
   padding: 10px;
@@ -77,14 +78,39 @@ code {
 }
 
 @media only screen and (max-width: 600px) {
-.label {
-  text-align: center;
-  color: white;
-  font-size: 1.5em;
+  .label {
+    text-align: center;
+    color: white;
+    font-size: 1.5em;
+  }
+
+  .inputfield {
+    text-align: center;
+  }
+
+  span {
+    position: absolute;
+    display: inline;
+    margin-top: 10px;
+  }
+
+  .instruction {
+    font-size: 1.2em;
+  }
+
+  .bodyfat {
+    font-size: 2em;
+  }
+
+  body {
+    height: 100%;
+  }
 }
-.inputfield {
-  text-align: center;
-}
+
+@media only screen and (max-width: 370px) {
+  .heading {
+    font-size: 2em;
+  }
 }
 
 .container {
@@ -108,14 +134,6 @@ code {
 
 input:invalid {
   color: #FF416C !important;
-}
-
-.input::after {
-  content: "mm";
-  position: relative;
-  height: 1em;
-  width: 3em;
-  color: white;
 }
 
 .inputscontainer {
@@ -178,39 +196,16 @@ a:hover {
   animation: fadein 1s;
 }
 
-
 @keyframes fadein {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-
-/* @media only screen and (min-width: 600px) {
-  .label {
-    display: block !important;
+  from {
+    opacity: 0;
   }
-} */
 
-@media only screen and (max-width: 600px) {
-.instruction {
-  font-size: 1.2em;
-}
-
-  .bodyfat {
-    font-size: 2em;
-  }
-  body {
-height: 100%;
-  }
-}
-
-@media only screen and (max-width: 370px) {
-  .heading {
-    font-size: 2em;
+  to {
+    opacity: 1;
   }
 }
 
 .infobttn {
- margin: auto !important;
+  margin: auto !important;
 }
-
-
