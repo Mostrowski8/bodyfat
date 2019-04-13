@@ -1,3 +1,4 @@
+import 'core-js/es6/';
 import React, { useReducer, useContext} from 'react';
 import Context from './reducer/Context'
 import reducer from './reducer/Reducer'

@@ -102,9 +102,6 @@ code {
     font-size: 2em;
   }
 
-  body {
-    height: 100%;
-  }
 }
 
 @media only screen and (max-width: 370px) {
