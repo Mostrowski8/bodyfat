@@ -1,8 +1,6 @@
 import React, { useReducer, useContext} from 'react';
 import Context from './reducer/Context'
 import reducer from './reducer/Reducer'
-
-//styling
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Collapse, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Modal, ModalHeader, ModalBody } from 'reactstrap';
@@ -95,9 +93,7 @@ const SexPicker = ({sexPickerOpen, sex}) => {
 }
 
 const Appbar = ({appBarOpen, modalOpen, sex, ...rest}) => {
-  console.log("appbaropen", appBarOpen, "modalopen", modalOpen, "sex", sex);
   const dispatch = useContext(Context);
-  console.log("dispatch", dispatch)
     return (
       <div>
         <Navbar color="light" light expand="md">
