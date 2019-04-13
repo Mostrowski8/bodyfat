@@ -1,7 +1,7 @@
 import 'core-js/es6/';
 import React, { useReducer, useContext} from 'react';
-import Context from './reducer/Context'
-import reducer from './reducer/Reducer'
+import Context from './reducer/Context';
+import reducer from './reducer/Reducer';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Collapse, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Modal, ModalHeader, ModalBody } from 'reactstrap';
