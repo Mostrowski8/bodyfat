@@ -21,10 +21,10 @@ export default function reducer(state, action) {
  let newForms;
  if (sex===true){
     newForms = newState.forms.filter((form)=>{return form.name!=="hips"&&form.name!=="tricep"})
-    newState =  {...state, sex, submit:false, forms:[...newForms, {name: "chest", value:0}, {name:"stomach", value:0}]}
+    newState =  {...state, sex, submit:false, forms:[...newForms, {name: "chest", value:""}, {name:"stomach", value:""}]}
   } else {
     newForms = newState.forms.filter((form)=>{return form.name!=="chest"&&form.name!=="stomach"})
-    newState =  {...state, sex, submit:false, forms:[...newForms, {name: "hips", value:0}, {name:"tricep", value:0}]}
+    newState =  {...state, sex, submit:false, forms:[...newForms, {name: "hips", value:""}, {name:"tricep", value:""}]}
   }
   console.log("newState", newState);
   return newState;

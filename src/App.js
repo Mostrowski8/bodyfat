@@ -10,13 +10,13 @@ import { Collapse, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, N
 let initialState = {
   forms: [
     {name: "age",
-    value: 0},
+    value: ""},
     {name: "thigh",
-      value : 0},
+      value : ""},
     {name: "chest",
-      value : 0}, 
+      value : ""}, 
     {name: "stomach",
-      value: 0} 
+      value: ""} 
   ],
   sex: true,
   sexPickerOpen: false,
