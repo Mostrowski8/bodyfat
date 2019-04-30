@@ -1,7 +1,7 @@
 {
-  "main.css": "/bodyfat/static/css/main.35f07943.chunk.css",
-  "main.js": "/bodyfat/static/js/main.321f9995.chunk.js",
-  "main.js.map": "/bodyfat/static/js/main.321f9995.chunk.js.map",
+  "main.css": "/bodyfat/static/css/main.f9252832.chunk.css",
+  "main.js": "/bodyfat/static/js/main.d585b5f2.chunk.js",
+  "main.js.map": "/bodyfat/static/js/main.d585b5f2.chunk.js.map",
   "static/css/1.16e24770.chunk.css": "/bodyfat/static/css/1.16e24770.chunk.css",
   "static/js/1.8df23758.chunk.js": "/bodyfat/static/js/1.8df23758.chunk.js",
   "static/js/1.8df23758.chunk.js.map": "/bodyfat/static/js/1.8df23758.chunk.js.map",
@@ -9,8 +9,8 @@
   "runtime~main.js.map": "/bodyfat/static/js/runtime~main.9cb2868c.js.map",
   "static/css/1.16e24770.chunk.css.map": "/bodyfat/static/css/1.16e24770.chunk.css.map",
   "static/media/index.css": "/bodyfat/static/media/athletes.0b911243.jpg",
-  "static/css/main.35f07943.chunk.css.map": "/bodyfat/static/css/main.35f07943.chunk.css.map",
+  "static/css/main.f9252832.chunk.css.map": "/bodyfat/static/css/main.f9252832.chunk.css.map",
   "index.html": "/bodyfat/index.html",
-  "precache-manifest.1b69e595e196b2aba636a2439f6297b3.js": "/bodyfat/precache-manifest.1b69e595e196b2aba636a2439f6297b3.js",
+  "precache-manifest.2c9df7ae095167c5abd59a96155de7c7.js": "/bodyfat/precache-manifest.2c9df7ae095167c5abd59a96155de7c7.js",
   "service-worker.js": "/bodyfat/service-worker.js"
 }
