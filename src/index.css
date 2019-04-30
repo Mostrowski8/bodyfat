@@ -1,14 +1,6 @@
 #root {
-  background-image: linear-gradient(to top, #36D1DC, #5B86E5);
-  background-repeat: 'no-repeat';
-  background-position: 'center';
   min-height: 100vh;
-  background-size: cover;
   margin: 0;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
 }
 
 body,
@@ -20,7 +12,23 @@ html {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: linear-gradient(to top, #36D1DC, #5B86E5);
+  margin: 0;
+}
+
+.background {
+  background-image: url(./assets/athletes.jpg);
+  background-repeat: 'no-repeat';
+  background-position: top;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+.gradient {
+  padding-top: 8em;
+  position: relative;
+  background-image: linear-gradient(to top, rgba(54, 209, 220, 0.925), rgba(91, 135, 229, 0.973));
   background-repeat: 'no-repeat';
   background-position: 'center';
   min-height: 100vh;
@@ -30,6 +38,8 @@ html {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  -webkit-clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 100%, 70% 100%, 30% 100%, 0% 70%, 0 0);
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 100%, 70% 100%, 30% 100%, 0% 70%, 0 0);
 }
 
 .info {
@@ -49,10 +59,7 @@ li {
 }
 
 .container {
-  border: 1px solid white;
   padding: 10px;
-  margin-bottom: 2em;
-  margin-top: 30px;
 }
 
 .heading {
