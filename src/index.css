@@ -28,7 +28,7 @@ html {
 .gradient {
   padding-top: 8em;
   position: relative;
-  background-image: linear-gradient(to top, rgba(54, 209, 220, 0.925), rgba(91, 135, 229, 0.973));
+  background-image: linear-gradient(to bottom right, rgba(54, 209, 220, 1), rgba(91, 135, 229, 0.8));
   background-repeat: 'no-repeat';
   background-position: 'center';
   min-height: 100vh;
