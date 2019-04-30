@@ -94,6 +94,11 @@ code {
     margin-top: 10px;
   }
 
+  span.navbar-toggler-icon {
+    position: relative;
+    margin: 0px;
+  }
+
   .instruction {
     font-size: 1.2em;
   }

@@ -41,8 +41,8 @@ const Calc = ({result, sex, forms, submit, sexPickerOpen}) => {
 const dispatch = useContext(Context);
 let inputdone =  forms.find((e) => {return e.value === '' || e.value === 0}) !== undefined ? false : true;
     return(
-      <div>
-      <div>
+<div class="background">
+      <div class="gradient">
         <div className="container">
         {!inputdone && <div className="row"><div className="col-sm instruction">Please enter your age and size of skin folds on input areas</div></div>}
         <div className="row">
