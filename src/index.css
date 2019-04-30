@@ -31,7 +31,7 @@ html {
   background-image: linear-gradient(to bottom right, rgba(54, 209, 220, 1), rgba(91, 135, 229, 0.8));
   background-repeat: 'no-repeat';
   background-position: 'center';
-  min-height: 100vh;
+  min-height: calc(100vh - 68px);
   background-size: cover;
   margin: 0;
   -webkit-background-size: cover;
