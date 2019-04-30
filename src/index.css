@@ -98,6 +98,10 @@ code {
     position: relative;
     margin: 0px;
   }
+  button.close span {
+    position: relative;
+    margin: 0px;
+  }
 
   .instruction {
     font-size: 1.2em;
