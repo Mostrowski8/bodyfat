@@ -86,8 +86,8 @@ code {
 
 @media only screen and (max-width: 600px) {
 .gradient {
-  -webkit-clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 100%, 70% 100%, 0 100%, 0% 70%, 0 0);
-clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 100%, 70% 100%, 0 100%, 0% 70%, 0 0);
+  -webkit-clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 100%, 70% 100%, 10% 100%, 0% 70%, 0 0);
+clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 100%, 70% 100%, 10% 100%, 0% 70%, 0 0);
 }
 
   .label {
@@ -134,10 +134,15 @@ clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 100%, 70% 100%, 0 100%, 0% 70%
 .container {
   border-radius: 5px !important;
   transition: 2s ease-in-out !important;
+  animation: fadein 2s;
 }
 
 .btn-group {
   margin-left: 10px !important;
+}
+
+a:active {
+  transform: translateY(1px)
 }
 
 .input {
@@ -201,7 +206,7 @@ a:hover {
   font-size: 4em;
   margin-left: 50%;
   transform: translateX(-50%);
-  animation: fadein 1s;
+  animation: fadein 3s;
 }
 
 .instruction {
@@ -223,6 +228,19 @@ a:hover {
     opacity: 1;
   }
 }
+
+@keyframes fadeinLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%);
+  }
+}
+
 
 .infobttn {
   margin: auto !important;
