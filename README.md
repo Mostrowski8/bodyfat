@@ -9,3 +9,5 @@ It is based on skinfold measurement method described here.
 https://www.ptdirect.com/training-delivery/client-assessment/taking-skin-fold-body-fat-measurements
 
 Skin fold measure tool is required for correct usage.
+
+Reducer has been added for learning purposes as the scale does not require it.
